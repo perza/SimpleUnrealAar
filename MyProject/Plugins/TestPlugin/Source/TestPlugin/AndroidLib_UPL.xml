@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--GearVR plugin additions-->
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+	<trace enable="true"/>
+	<init>
+		<log text="AndroidLib init"/>		
+	</init>
+
+  <AARImports>
+    <!--insertValue value="repository E:/Unreal Projects/GltSdkUnrealExample/Plugins/AndroidLib/ThirdParty/repository"/-->
+    <insertValue value="repository $S(PluginDir)/../../ThirdParty/repository"/>
+    <insertNewline/>
+    <insert>
+      com.mycompany.myproduct.mylibrary,mylibrary-release,1.0
+    </insert>
+    <insertNewline/>
+  </AARImports>
+  
+  <buildGradleAdditions>
+    <insert>
+      dependencies {
+        implementation('com.mycompany.myproduct.mylibrary:mylibrary-release:1.0')
+      }
+    </insert>
+  </buildGradleAdditions>
+
+  <!-- optional additions to the GameActivity imports in GameActivity.java -->
+  <gameActivityImportAdditions>
+    <insert>
+      import android.util.Log;
+    </insert>
+  </gameActivityImportAdditions>
+
+  <!-- optional additions to proguard -->
+  <proguardAdditions>
+    <insert>
+      <!-- :TEST: added     -keepnames class com.rz.gltsdk.testlibmain -->
+      <![CDATA[
+      -keepattributes Signature
+      -dontskipnonpubliclibraryclassmembers
+      
+      -keepnames class com.mycompany.myproduct.mylibrary.** { *; }      
+
+      -keepclassmembers class com.epicgames.ue4.GameActivity {
+            public <methods>;
+            public <fields>;
+     }
+    ]]>
+    </insert>
+  </proguardAdditions>
+
+  <resourceCopies>
+    <!-- Copy the generated resource file to be packaged -->
+    <copyDir src="$S(PluginDir)/../../ThirdParty/repository"
+            dst="$S(BuildDir)" />
+  </resourceCopies>
+
+  <androidManifestUpdates>
+    <insert>
+    </insert>
+  </androidManifestUpdates>
+
+  <!-- optional additions to the GameActivity class in GameActivity.java -->
+	<gameActivityClassAdditions>
+    <insert>
+      public void AndroidThunkJava_DebugStringToAdb()
+      {
+        Log.d("LibManager", "GameActivity addition debug");
+      }
+    </insert>
+  </gameActivityClassAdditions>
+	
+	<!-- optional additions to GameActivity onCreate metadata reading in GameActivity.java -->
+	<gameActivityReadMetadataAdditions>
+	<insert>
+
+  </insert>
+	</gameActivityReadMetadataAdditions>
+	
+	<!-- optional additions to GameActivity onCreate in GameActivity.java -->
+	<gameActivityOnCreateAdditions>
+		<insert>
+		<![CDATA[
+		]]>
+		</insert>
+	</gameActivityOnCreateAdditions>
+
+	<!-- optional additions to GameActivity onDestroy in GameActivity.java -->
+	<gameActivityOnDestroyAdditions>
+		<insert>
+		
+		</insert>
+	</gameActivityOnDestroyAdditions>
+	
+	
+	<!-- optional additions to GameActivity onStart in GameActivity.java -->
+	<gameActivityOnStartAdditions>
+		<insert>
+		
+		</insert>
+	</gameActivityOnStartAdditions>
+
+	<!-- optional additions to GameActivity onStop in GameActivity.java -->
+	<gameActivityOnStopAdditions>
+		<insert>
+		
+		</insert>
+	</gameActivityOnStopAdditions>
+	
+
+	<!-- optional additions to GameActivity onPause in GameActivity.java	-->
+	<gameActivityOnPauseAdditions>
+    <insert>
+    <![CDATA[
+    ]]>
+    </insert>
+  </gameActivityOnPauseAdditions>
+
+
+  <!-- optional additions to GameActivity onResume in GameActivity.java	-->
+  <gameActivityOnResumeAdditions>
+    <insert>
+    </insert>
+  </gameActivityOnResumeAdditions>
+
+
+	<!-- optional additions to GameActivity onActivityResult in GameActivity.java -->
+	<gameActivityOnActivityResultAdditions>
+		<insert>
+		</insert>
+    </gameActivityOnActivityResultAdditions>
+	
+
+	<!-- optional libraries to load in GameActivity.java before libUE4.so -->
+	<soLoadLibrary>
+		<!-- need this if plugin enabled and supported architecture, even if not packaged for GearVR -->
+	</soLoadLibrary>
+</root>

@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "TestPlugin",
+	"Description": "plugari",
+	"Category": "Other",
+	"CreatedBy": "siili",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "TestPlugin",
+			"Type": "Developer",
+			"LoadingPhase": "Default"
+		}
+	]
+}

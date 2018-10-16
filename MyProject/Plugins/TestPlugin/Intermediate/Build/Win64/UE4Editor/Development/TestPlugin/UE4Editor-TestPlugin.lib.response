@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-TestPlugin.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"E:\UE42\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"E:\Unreal Projects\MyProject\Plugins\TestPlugin\Intermediate\Build\Win64\UE4Editor\Development\TestPlugin\Module.TestPlugin.cpp.obj"
+"E:\UE42\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Development\PCLaunch.rc.res"
+/OUT:"E:\Unreal Projects\MyProject\Plugins\TestPlugin\Intermediate\Build\Win64\UE4Editor\Development\TestPlugin\UE4Editor-TestPlugin.lib"
