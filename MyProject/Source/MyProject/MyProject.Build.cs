@@ -12,8 +12,6 @@ public class MyProject : ModuleRules
 
 		// PrivateDependencyModuleNames.AddRange(new string[] {  });
 
-        PrivateDependencyModuleNames.Add("Launch");
-
 
         // Uncomment if you are using Slate UI
         // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
