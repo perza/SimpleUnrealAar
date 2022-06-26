@@ -12,5 +12,14 @@
 				"Engine"
 			]
 		}
+	],
+	"Plugins": [
+		{
+			"Name": "TestPlugin",
+			"Enabled": true
+		}
+	],
+	"TargetPlatforms": [
+		"Android"
 	]
 }
