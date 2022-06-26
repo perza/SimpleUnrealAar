@@ -39,6 +39,7 @@ MyLibProj/google-services.json
 MyProject/.vs/
 MyProject/.vscode/
 MyProject/.clangd/
+MyProject/.config/
 
 # Compiled Object files
 *.slo
