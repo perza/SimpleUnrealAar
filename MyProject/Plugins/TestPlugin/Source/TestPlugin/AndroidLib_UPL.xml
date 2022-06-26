@@ -6,28 +6,25 @@
 		<log text="AndroidLib init"/>		
 	</init>
 
-  <AARImports>
-    <!--insertValue value="repository E:/Unreal Projects/GltSdkUnrealExample/Plugins/AndroidLib/ThirdParty/repository"/-->
-    <insertValue value="repository $S(PluginDir)/../../ThirdParty/repository"/>
-    <insertNewline/>
-    <insert>
-      com.mycompany.myproduct.mylibrary,mylibrary-release,1.0
-    </insert>
-    <insertNewline/>
-  </AARImports>
+ 
+  <gradleCopies>
+    <!-- Copy the generated resource file to be packaged -->
+    <copyFile src="$S(PluginDir)/../../ThirdParty/repository/mylibrary-release.jar" dst="$S(BuildDir)/gradle/app/libs/mylibrary-release.jar" />
+  </gradleCopies>
+
   
   <buildGradleAdditions>
-    <insert>
-      dependencies {
-        implementation('com.mycompany.myproduct.mylibrary:mylibrary-release:1.0')
-      }
-    </insert>
+    <insert><![CDATA[
+    dependencies {
+        implementation files('libs\\mylibrary-release.jar')
+    }
+    ]]></insert>
   </buildGradleAdditions>
 
   <!-- optional additions to the GameActivity imports in GameActivity.java -->
   <gameActivityImportAdditions>
     <insert>
-      import android.util.Log;
+      import com.mycompany.myproduct.mylibrary.MyTestClass;
     </insert>
   </gameActivityImportAdditions>
 
@@ -39,7 +36,7 @@
       -keepattributes Signature
       -dontskipnonpubliclibraryclassmembers
       
-      -keepnames class com.mycompany.myproduct.mylibrary.** { *; }      
+      -keep public class com.mycompany.myproduct.mylibrary.** { *; }      
 
       -keepclassmembers class com.epicgames.ue4.GameActivity {
             public <methods>;
@@ -49,12 +46,6 @@
     </insert>
   </proguardAdditions>
 
-  <resourceCopies>
-    <!-- Copy the generated resource file to be packaged -->
-    <copyDir src="$S(PluginDir)/../../ThirdParty/repository"
-            dst="$S(BuildDir)" />
-  </resourceCopies>
-
   <androidManifestUpdates>
     <insert>
     </insert>
@@ -63,10 +54,12 @@
   <!-- optional additions to the GameActivity class in GameActivity.java -->
 	<gameActivityClassAdditions>
     <insert>
+    <![CDATA[
       public void AndroidThunkJava_DebugStringToAdb()
       {
-        Log.d("LibManager", "GameActivity addition debug");
+        MyTestClass.showSimple(this, "DebugStringToast");
       }
+      ]]>
     </insert>
   </gameActivityClassAdditions>
 	
@@ -80,8 +73,6 @@
 	<!-- optional additions to GameActivity onCreate in GameActivity.java -->
 	<gameActivityOnCreateAdditions>
 		<insert>
-		<![CDATA[
-		]]>
 		</insert>
 	</gameActivityOnCreateAdditions>
 
@@ -111,8 +102,6 @@
 	<!-- optional additions to GameActivity onPause in GameActivity.java	-->
 	<gameActivityOnPauseAdditions>
     <insert>
-    <![CDATA[
-    ]]>
     </insert>
   </gameActivityOnPauseAdditions>
 
